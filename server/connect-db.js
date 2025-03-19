@@ -1,12 +1,16 @@
-import mongoose from "mongoose";
+import { MongoClient } from "mongodb";
 const connectDb = async () => {
+  const client = new MongoClient(
+    "mongodb+srv://duluuf:LM7miFmm6q0eg0Qa@cluster1.pyncrqd.mongodb.net/"
+  );
+  let connection;
   try {
-    await mongoose.connect(
-      "mongodb+srv://sumiyagombo840:sword1stone1@fooddelivery.wirf8.mongodb.net/"
-    );
-    console.log("connected to MongoDb");
+    connection = await client.connect();
+    console.log("amjilttai");
   } catch {
     console.error(error);
   }
+  return connection.db("sumiya").collection("users");
 };
+
 export default connectDb;
