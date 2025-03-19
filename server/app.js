@@ -7,6 +7,9 @@ const PORT = 3001;
 app.use(cors());
 app.use(express.json());
 connectDb();
+app.get("/", (request, respond) => {
+  respond.json("Hello World!");
+});
 app.post("/create-user", async (request, response) => {
   let db = await connectDb();
   try {
