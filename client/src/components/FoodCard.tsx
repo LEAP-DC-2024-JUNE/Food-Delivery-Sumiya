@@ -28,7 +28,7 @@ export const FoodCard: React.FC<FoodCardProps> = ({
                 {showAddDish && <AddDish categoryId={food._id._id} />}
                 {food.foods.map((item) => {
                   return (
-                    <Card className="w-[397px] h-[342px]">
+                    <Card className="w-[397px] h-[342px]" key={item._id}>
                       <CardContent>
                         <div>
                           <div className="h-[210px] mt-4 relative">

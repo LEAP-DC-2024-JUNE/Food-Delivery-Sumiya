@@ -1,7 +1,11 @@
 import { FoodDialogContent } from "./FoodDialogContent";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-export const AddToCart = ({ food }) => {
+import { FoodItem } from "@/lib/constants";
+interface AddToCartProps {
+  food: FoodItem;
+}
+export const AddToCart = ({ food }: AddToCartProps) => {
   return (
     <div>
       <Dialog>

@@ -13,7 +13,7 @@ export const CategoryBadge: React.FC<CategoryBadgeProps> = ({ categories }) => {
     <div className="flex gap-2">
       {categories.map((categorie) => {
         return (
-          <Badge variant="outline" key={categorie._id}>
+          <Badge variant="outline" key={categorie._id._id}>
             {categorie._id.categoryName}
           </Badge>
         );

@@ -1,6 +1,5 @@
 "use client";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { useFormik } from "formik";
 import { signup } from "@/utils";
 import { useRouter } from "next/navigation";

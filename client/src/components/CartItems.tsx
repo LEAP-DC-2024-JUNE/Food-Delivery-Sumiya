@@ -3,7 +3,6 @@ import { Cart } from "./svgs/Cart";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
-  SheetClose,
   SheetContent,
   SheetHeader,
   SheetTitle,

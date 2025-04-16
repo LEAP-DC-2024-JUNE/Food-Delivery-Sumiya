@@ -12,7 +12,7 @@ import { DropDownFood } from "@/components/admin/DropDownFood";
 import { DeliveryStatus } from "@/components/admin/DeliveryStatus";
 import { useState, useEffect } from "react";
 import { ChangeDeliveryStates } from "@/components/admin/ChangeDeliverystates";
-import { UserOrder, FoodOrderItem } from "@/lib/constants";
+import { UserOrder } from "@/lib/constants";
 export const Orders = () => {
   const [userOrders, setUserOrders] = useState<UserOrder[]>([]);
   const [selectedOrders, setSelectedOrders] = useState<string[]>([]);

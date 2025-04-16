@@ -7,6 +7,7 @@ export type FoodItem = {
   createdAt: string;
   updatedAt: string;
   __v: number;
+  id: string;
 };
 export type Category = {
   _id: {

@@ -15,8 +15,8 @@ export const AddButtonIcon = () => {
         <path
           d="M18 13.3335V22.6668M13.3333 18.0002H22.6666"
           stroke="#FAFAFA"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
     </div>

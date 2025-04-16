@@ -5,7 +5,7 @@ import { CartContext } from "./CartContext";
 import { foodOrder } from "@/utils";
 import { useContext } from "react";
 import { CartItem } from "@/lib/constants";
-// import { UserOrderHistory } from "./UserOrderHistory";
+import { UserOrderHistory } from "./UserOrderHistory";
 export const UserTab = () => {
   const { cartItems, updateCartItems } = useContext(CartContext) as {
     cartItems: CartItem[];
@@ -180,7 +180,9 @@ export const UserTab = () => {
             <CardHeader>
               <CardTitle>Order history</CardTitle>
             </CardHeader>
-            <CardContent>{/* <UserOrderHistory /> */}</CardContent>
+            <CardContent>
+              <UserOrderHistory />
+            </CardContent>
           </Card>
         </TabsContent>
       </Tabs>
