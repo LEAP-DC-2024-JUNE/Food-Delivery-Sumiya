@@ -5,9 +5,17 @@ import {
   updateFoodOrderStatus,
   getFoodOrderByUserId,
 } from "../controllers/foodOrderController.js";
+import { authenticate } from "../middleware/auth.js";
+import { authorizeUser } from "../middleware/author.js";
 const foodOrderRouter = express.Router();
-foodOrderRouter.post("/foodorder", createFoodOrder);
-foodOrderRouter.get("/foodorder", getFoodOrder);
-foodOrderRouter.patch("/foodorder/:orderId/status", updateFoodOrderStatus);
+foodOrderRouter
+  .route("/foodorder")
+  .post(authenticate, authorizeUser(["ADMIN"]), createFoodOrder);
+foodOrderRouter
+  .route("/foodorder")
+  .get(authenticate, authorizeUser(["ADMIN"]), getFoodOrder);
+foodOrderRouter
+  .route("/foodorder/:orderId/status")
+  .patch(authenticate, authorizeUser(["ADMIN"]), updateFoodOrderStatus);
 foodOrderRouter.get("/foodorder/user/:userId", getFoodOrderByUserId);
 export default foodOrderRouter;

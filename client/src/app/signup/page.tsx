@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import { signup } from "@/utils";
 import { useRouter } from "next/navigation";
 import * as Yup from "yup";
+import loginImage from "../../../public/loginImage.jpg";
 const UserForm = () => {
   let loginSchema = Yup.object({
     email: Yup.string()
@@ -65,7 +66,7 @@ const UserForm = () => {
         </p>
       </div>
       <div className="px-5 py-5 w-2/3">
-        <img src="/loginimage.jpg" className="w-full h-full" alt="LoginImage" />
+        <img src={loginImage.src} className="w-full h-full" alt="LoginImage" />
       </div>
     </div>
   );

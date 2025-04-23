@@ -5,9 +5,13 @@ import {
   updateCategoryFoodById,
   deleteCategoryFoodById,
 } from "../controllers/foodCategoryController.js";
+import { authenticate } from "../middleware/auth.js";
+import { authorizeUser } from "../middleware/author.js";
 const foodCategoryRouter = express.Router();
 foodCategoryRouter.get("/food-categories", getCategoryFoods);
-foodCategoryRouter.post("/food-categories", createFoodCategory);
+foodCategoryRouter
+  .route("/food-categories")
+  .post(authenticate, authorizeUser(["ADMIN"]), createFoodCategory);
 foodCategoryRouter.patch("/food-categories/:id", updateCategoryFoodById);
 foodCategoryRouter.delete("/food-categories/:id", deleteCategoryFoodById);
 export default foodCategoryRouter;

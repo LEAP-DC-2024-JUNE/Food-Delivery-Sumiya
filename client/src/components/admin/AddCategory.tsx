@@ -15,14 +15,22 @@ import { useState } from "react";
 export const AddCategory = () => {
   const [categoryName, setCategoryName] = useState("");
   const [open, setOpen] = useState(false);
+  const authHeader = () => {
+    const token = localStorage.getItem("token");
+    return token ? { Authorization: `Bearer ${token}` } : {};
+  };
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCategoryName(e.target.value);
   };
   const handleAddCategory = async () => {
     try {
-      await axios.post("http://localhost:3001/food-categories", {
-        categoryName: categoryName,
-      });
+      await axios.post(
+        "http://localhost:3001/food-categories",
+        {
+          categoryName: categoryName,
+        },
+        { headers: authHeader() }
+      );
 
       console.log("Category added successfully");
       setCategoryName("");

@@ -5,9 +5,17 @@ import {
   updateFoodsById,
   deleteFoodsById,
 } from "../controllers/foodController.js";
+import { authenticate } from "../middleware/auth.js";
+import { authorizeUser } from "../middleware/author.js";
 const foodRouter = express.Router();
 foodRouter.get("/foods", getFoods);
-foodRouter.post("/foods", createFoods);
-foodRouter.patch("/foods/:id", updateFoodsById);
-foodRouter.delete("/foods/:id", deleteFoodsById);
+foodRouter
+  .route("/foods")
+  .post(authenticate, authorizeUser(["ADMIN"]), createFoods);
+foodRouter
+  .route("/foods/:id")
+  .patch(authenticate, authorizeUser(["ADMIN"]), updateFoodsById);
+foodRouter
+  .route("/foods/:id")
+  .delete(authenticate, authorizeUser(["ADMIN"]), deleteFoodsById);
 export default foodRouter;

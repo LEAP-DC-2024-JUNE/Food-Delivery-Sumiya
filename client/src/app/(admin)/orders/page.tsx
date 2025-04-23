@@ -1,5 +1,5 @@
 "use client";
-import { getFoodData, updateOrder } from "@/utils";
+import { getFoodOrderData, updateOrder } from "@/utils";
 import {
   Table,
   TableBody,
@@ -13,7 +13,7 @@ import { DeliveryStatus } from "@/components/admin/DeliveryStatus";
 import { useState, useEffect } from "react";
 import { ChangeDeliveryStates } from "@/components/admin/ChangeDeliverystates";
 import { UserOrder } from "@/lib/constants";
-export const Orders = () => {
+const OrdersPage = () => {
   const [userOrders, setUserOrders] = useState<UserOrder[]>([]);
   const [selectedOrders, setSelectedOrders] = useState<string[]>([]);
   const [open, setOpen] = useState(false);
@@ -21,7 +21,7 @@ export const Orders = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const data = await getFoodData("foodorder");
+      const data = await getFoodOrderData("foodorder");
       setUserOrders(data);
     }
     fetchData();
@@ -42,7 +42,7 @@ export const Orders = () => {
           updateOrder({ orderId, status: bulkStatus })
         )
       );
-      const updatedOrders: UserOrder[] = await getFoodData("foodorder");
+      const updatedOrders: UserOrder[] = await getFoodOrderData("foodorder");
       setUserOrders(updatedOrders);
       setSelectedOrders([]);
       setOpen(false);
@@ -50,7 +50,6 @@ export const Orders = () => {
       console.error("Failed to update order statuses:", error);
     }
   };
-
   return (
     <div>
       <div>
@@ -62,11 +61,6 @@ export const Orders = () => {
           handleBulkUpdate={handleBulkUpdate}
           selectedOrders={selectedOrders}
         />
-        <style jsx>{`
-          .selected-checkbox:hover {
-            background-color: #e0e0e0; /* light gray hover */
-          }
-        `}</style>
       </div>
       <div>
         <Table>
@@ -123,5 +117,4 @@ export const Orders = () => {
     </div>
   );
 };
-
-export default Orders;
+export default OrdersPage;

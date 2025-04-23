@@ -6,6 +6,12 @@ import { foodOrder } from "@/utils";
 import { useContext } from "react";
 import { CartItem } from "@/lib/constants";
 import { UserOrderHistory } from "./UserOrderHistory";
+import { decodeToken } from "@/utils";
+import { OrderCheckOut } from "./OrderCheckOut";
+import { JwtPayload } from "jwt-decode";
+interface DecodedTokenType extends JwtPayload {
+  id?: string;
+}
 export const UserTab = () => {
   const { cartItems, updateCartItems } = useContext(CartContext) as {
     cartItems: CartItem[];
@@ -49,7 +55,15 @@ export const UserTab = () => {
   const handleCheckout = async () => {
     if (typeof window !== "undefined") {
       try {
-        const userId = localStorage.getItem("userId");
+        const token = localStorage.getItem("token");
+        const decodedToken = decodeToken(token) as DecodedTokenType | null;
+
+        if (!decodedToken) {
+          console.error("Invalid or missing token");
+          return;
+        }
+
+        const userId = decodedToken.id;
         if (!userId) {
           console.error("User ID not found in local storage.");
           return;
@@ -169,7 +183,7 @@ export const UserTab = () => {
                   onClick={handleCheckout}
                   className="w-full bg-red-500 text-white border border-red-500 rounded-full mt-5"
                 >
-                  Checkout
+                  <OrderCheckOut />
                 </Button>
               </div>
             </CardContent>

@@ -1,8 +1,9 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { login } from "@/utils";
-export const Login = () => {
+import { login, decodeToken } from "@/utils";
+import loginImage from "../../../public/loginImage.jpg";
+const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -16,10 +17,14 @@ export const Login = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const { token, userId, role } = await login(formData);
+      const { token } = await login(formData);
       localStorage.setItem("token", token);
-      localStorage.setItem("userId", userId);
-      localStorage.setItem("role", role);
+      const decodedToken = decodeToken(token);
+      if (!decodedToken) {
+        setError("Invalid token");
+        return;
+      }
+      const { role } = decodedToken;
       if (role === "ADMIN") {
         router.push("/category");
       } else {
@@ -73,7 +78,7 @@ export const Login = () => {
         </p>
       </div>
       <div className="px-5 py-5 w-2/3">
-        <img src="/loginimage.jpg" className="w-full h-full" alt="LoginImage" />
+        <img src={loginImage.src} className="w-full h-full" alt="LoginImage" />
       </div>
     </div>
   );

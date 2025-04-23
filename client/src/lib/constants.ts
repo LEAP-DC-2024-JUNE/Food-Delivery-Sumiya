@@ -7,7 +7,6 @@ export type FoodItem = {
   createdAt: string;
   updatedAt: string;
   __v: number;
-  id: string;
 };
 export type Category = {
   _id: {
@@ -27,7 +26,6 @@ export type CartItem = {
   createdAt: string;
   updatedAt: string;
   __v: number;
-  id: string;
   [key: string]: any;
 };
 export type FoodOrderItem = {

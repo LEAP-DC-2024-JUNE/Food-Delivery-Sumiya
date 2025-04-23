@@ -26,6 +26,10 @@ export const AddDish: React.FC<AddDishProps> = ({ categoryId }) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
+  const authHeader = () => {
+    const token = localStorage.getItem("token");
+    return token ? { Authorization: `Bearer ${token}` } : {};
+  };
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
     setFoodData((prevData) => ({
@@ -55,12 +59,16 @@ export const AddDish: React.FC<AddDishProps> = ({ categoryId }) => {
           ...prevData,
           image: response.data.secure_url,
         }));
-        await axios.post("http://localhost:3001/foods", {
-          foodName: foodData.foodName,
-          price: parseInt(foodData.price),
-          category: categoryId,
-          image: response.data.secure_url,
-        });
+        await axios.post(
+          "http://localhost:3001/foods",
+          {
+            foodName: foodData.foodName,
+            price: parseInt(foodData.price),
+            category: categoryId,
+            image: response.data.secure_url,
+          },
+          { headers: authHeader() }
+        );
 
         console.log("Food added successfully");
         setFoodData({ foodName: "", price: "", image: "" });
@@ -74,11 +82,15 @@ export const AddDish: React.FC<AddDishProps> = ({ categoryId }) => {
       }
     } else {
       try {
-        await axios.post("http://localhost:3001/foods", {
-          foodName: foodData.foodName,
-          price: parseInt(foodData.price),
-          category: categoryId,
-        });
+        await axios.post(
+          "http://localhost:3001/foods",
+          {
+            foodName: foodData.foodName,
+            price: parseInt(foodData.price),
+            category: categoryId,
+          },
+          { headers: authHeader() }
+        );
         console.log("Food added successfully");
         setFoodData({ foodName: "", price: "", image: "" });
         setOpen(false);

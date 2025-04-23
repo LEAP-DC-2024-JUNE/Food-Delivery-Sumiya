@@ -36,8 +36,6 @@ export const login = async (req, res) => {
       status: "Succes",
       message: "You are loggin in succesfully",
       token: jwToken,
-      userId: user._id,
-      role: user.role,
     });
   } catch (error) {
     res.status(500).json({ message: error.message });

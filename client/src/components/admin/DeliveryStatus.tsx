@@ -20,6 +20,18 @@ export const DeliveryStatus: React.FC<DeliveryStatusProps> = ({
 }) => {
   const [currentStatus, setCurrentStatus] = useState(status);
   const [open, setOpen] = useState(false);
+  const getStatusColorClass = (status: string): string => {
+    switch (status) {
+      case "DELIVERED":
+        return "border-green-500";
+      case "PENDING":
+        return "border-red-500";
+      case "CANCELLED":
+        return "border-gray-500";
+      default:
+        return "border-gray-300";
+    }
+  };
   const handleStatusChange = async (newStatus: string) => {
     try {
       await updateOrder({ orderId: orderId, status: newStatus });
@@ -33,7 +45,12 @@ export const DeliveryStatus: React.FC<DeliveryStatusProps> = ({
     <div>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button variant="outline">{currentStatus}</Button>
+          <Button
+            variant="outline"
+            className={`${getStatusColorClass(currentStatus)}`}
+          >
+            {currentStatus}
+          </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>

@@ -13,7 +13,6 @@ type Food = {
   createdAt: string;
   updatedAt: string;
   __v: number;
-  id: string;
 };
 type FoodDialogContentProps = {
   food: Food;
