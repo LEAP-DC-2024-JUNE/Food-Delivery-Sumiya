@@ -23,13 +23,13 @@ export const DropDownFood: React.FC<DropDownFoodProps> = ({ userfoods }) => {
           &#129171;
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          {userfoods.map((user) => (
-            <div key={user.food.foodName}>
+          {userfoods?.map((user) => (
+            <div key={user?.food?.foodName}>
               <DropdownMenuItem className="flex justify-between">
                 <img
-                  src={user.food.image}
+                  src={user?.food?.image}
                   className="w-[32px] h-[30px]"
-                  alt={user.food.foodName}
+                  alt={user?.food?.foodName}
                 />{" "}
                 x{user.quantity}
               </DropdownMenuItem>

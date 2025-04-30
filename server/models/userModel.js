@@ -12,6 +12,8 @@ const UserSchema = new Schema(
     role: { type: String, enum: Object.values(UserRoleEnum), required: true },
     orderedFoods: [{ type: Types.ObjectId, ref: "FoodOrder" }],
     isVerified: { type: Boolean, default: false },
+    resetPasswordToken: { type: String },
+    resetPasswordExpires: { type: Date },
   },
   { timestamps: true }
 );

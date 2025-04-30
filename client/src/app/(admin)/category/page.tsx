@@ -1,7 +1,7 @@
 import { AddCategory } from "@/components/admin/AddCategory";
 import { getFoodData } from "@/utils";
 import { Badge } from "@/components/ui/badge";
-import { FoodCard } from "@/components/FoodCard";
+import { FoodCard } from "@/components/food/FoodCard";
 type CategoryData = {
   _id: {
     _id: string;
@@ -9,7 +9,6 @@ type CategoryData = {
   };
   foods: FoodItem[];
 };
-
 type FoodItem = {
   _id: string;
   foodName: string;
@@ -22,7 +21,6 @@ type FoodItem = {
 };
 const Category = async () => {
   const categories: CategoryData[] = await getFoodData("categories");
-  console.log(categories);
   return (
     <div className="max-w-[1440px]">
       <div className="flex flex-col gap-4 px-6 py-6">
@@ -30,12 +28,12 @@ const Category = async () => {
         <div className="flex gap-2 flex-wrap">
           <div className="flex gap-2 flex-wrap">
             <Badge variant="outline">All dishes</Badge>
-            {categories.map((category) => {
+            {categories.map((category, index) => {
               return (
-                <Badge variant="outline" key={category._id._id}>
-                  {category._id.categoryName}
+                <Badge variant="outline" key={category.index}>
+                  {category.categoryName}
                   <span className="bg-black text-white w-6 ml-2 flex items-center justify-center rounded-2xl">
-                    {category.foods.length}
+                    {category.foodData.length}
                   </span>
                 </Badge>
               );

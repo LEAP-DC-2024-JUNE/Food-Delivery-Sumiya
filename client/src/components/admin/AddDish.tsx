@@ -60,7 +60,7 @@ export const AddDish: React.FC<AddDishProps> = ({ categoryId }) => {
           image: response.data.secure_url,
         }));
         await axios.post(
-          "http://localhost:3001/foods",
+          " http://localhost:3001/foods",
           {
             foodName: foodData.foodName,
             price: parseInt(foodData.price),

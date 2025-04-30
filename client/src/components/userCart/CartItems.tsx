@@ -1,5 +1,5 @@
 "use client";
-import { Cart } from "./svgs/Cart";
+import { Cart } from "../svgs/Cart";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,

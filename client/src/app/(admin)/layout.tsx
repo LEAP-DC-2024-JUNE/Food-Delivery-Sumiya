@@ -1,6 +1,6 @@
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { AdminSideBar } from "@/components/admin/AdminSideBar";
-export default function CategoryLayout({
+export default function AdminLayOut({
   children,
 }: {
   children: React.ReactNode;

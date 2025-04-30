@@ -1,4 +1,4 @@
-import { FoodDialogContent } from "./FoodDialogContent";
+import { FoodDialogContent } from "../food/FoodDialogContent";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { FoodItem } from "@/lib/constants";

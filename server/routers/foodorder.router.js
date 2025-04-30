@@ -10,7 +10,7 @@ import { authorizeUser } from "../middleware/author.js";
 const foodOrderRouter = express.Router();
 foodOrderRouter
   .route("/foodorder")
-  .post(authenticate, authorizeUser(["ADMIN"]), createFoodOrder);
+  .post(authenticate, authorizeUser(["ADMIN, USER"]), createFoodOrder);
 foodOrderRouter
   .route("/foodorder")
   .get(authenticate, authorizeUser(["ADMIN"]), getFoodOrder);

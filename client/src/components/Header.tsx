@@ -1,5 +1,5 @@
 import { DeliveryLogo } from "./svgs/DeliveryLogo";
-import { CartItems } from "./CartItems";
+import { CartItems } from "./userCart/CartItems";
 import { LoginIcon } from "./svgs/LoginIcon";
 import Link from "next/link";
 export const Header = () => {

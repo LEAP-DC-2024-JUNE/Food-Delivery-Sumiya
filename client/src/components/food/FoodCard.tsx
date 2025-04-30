@@ -1,7 +1,8 @@
-import { AddDish } from "./admin/AddDish";
+import { AddDish } from "../admin/AddDish";
 import { Card, CardContent } from "@/components/ui/card";
 import { Category } from "@/lib/constants";
-import { AddToCart } from "./AddToCart";
+import { AddToCart } from "../userCart/AddToCart";
+import { EditDish } from "../admin/EditDish";
 type FoodCardProps = {
   foods: Category[];
   showAddDish?: boolean;
@@ -16,17 +17,15 @@ export const FoodCard: React.FC<FoodCardProps> = ({
     <div>
       <div>
         {foods.map((food) => {
+          console.log(food);
           return (
-            <div
-              key={food._id._id}
-              className="flex flex-col gap-[40px] mt-[40px]"
-            >
+            <div key={food.key} className="flex flex-col gap-[40px] mt-[40px]">
               <h1 className=" text-[30px]" style={{ color: color }}>
-                {food._id.categoryName}
+                {food.categoryName}
               </h1>
               <div className="flex flex-wrap gap-9">
-                {showAddDish && <AddDish categoryId={food._id._id} />}
-                {food.foods.map((item) => {
+                {showAddDish && <AddDish categoryId={food.index} />}
+                {food.foodData.map((item) => {
                   return (
                     <Card className="w-[397px] h-[342px]" key={item._id}>
                       <CardContent>
@@ -39,6 +38,7 @@ export const FoodCard: React.FC<FoodCardProps> = ({
                             />
                             <div className="absolute right-2 bottom-2">
                               {showAddDish ? "" : <AddToCart food={item} />}
+                              <EditDish food={item} />
                             </div>
                           </div>
                           <div>

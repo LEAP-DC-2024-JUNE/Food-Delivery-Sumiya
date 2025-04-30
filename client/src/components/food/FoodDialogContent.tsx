@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { useContext, useState } from "react";
-import { CartContext } from "./CartContext";
+import { CartContext } from "../userCart/CartContext";
 import { useToast } from "@/hooks/use-toast";
 import { CartItem } from "@/lib/constants";
 type Food = {

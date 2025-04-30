@@ -1,9 +1,8 @@
 import { getFoodData } from "@/utils";
 import { CategoryBadge } from "./CategoryBadge";
-import { FoodCard } from "../FoodCard";
+import { FoodCard } from "../food/FoodCard";
 export const FoodCardContainer = async () => {
   const foods = await getFoodData("categories");
-  console.log(foods);
   return (
     <div className="bg-[#404040] max-w-[1440px]">
       <div>

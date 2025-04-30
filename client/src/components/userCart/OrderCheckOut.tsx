@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { CheckOut } from "./svgs/Success";
+import { CheckOut } from "../svgs/Success";
 import {
   Dialog,
   DialogContent,
